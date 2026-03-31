@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import SearchBar from '../components/SearchBar'
 import OrgTree from '../components/OrgTree'
+import ExportImport from '../components/ExportImport'
 import { useNickname } from '../hooks/useNickname'
 import { createOrganization } from '../api/organizations'
 
@@ -62,6 +63,8 @@ export default function HomePage() {
       )}
 
       <SearchBar />
+
+      <ExportImport nickname={nickname} onImported={() => setRefresh(r => r + 1)} />
 
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '16px 0 8px' }}>
         <h2 style={{ fontSize: '16px', margin: 0 }}>根層級單位</h2>

@@ -19,5 +19,6 @@ class Organization(Base):
     updated_at = Column(TIMESTAMP, server_default=func.now(), onupdate=func.now())
     deleted_at = Column(TIMESTAMP, nullable=True)
 
-    children = relationship("Organization", backref="parent", foreign_keys=[parent_id])
+    children = relationship("Organization", back_populates="parent", foreign_keys=[parent_id])
+    parent = relationship("Organization", back_populates="children", foreign_keys=[parent_id], remote_side="Organization.id")
     logs = relationship("OrganizationLog", back_populates="organization")

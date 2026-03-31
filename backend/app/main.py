@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import os
 from dotenv import load_dotenv
 
-from app.api.endpoints import organizations, search
+from app.api.endpoints import organizations, search, export_import
 from app.db.database import Base, engine
 
 load_dotenv()
@@ -24,6 +24,7 @@ app.add_middleware(
 
 app.include_router(organizations.router, prefix="/organizations", tags=["organizations"])
 app.include_router(search.router, prefix="/search", tags=["search"])
+app.include_router(export_import.router, tags=["export/import"])
 
 @app.get("/")
 def root():
